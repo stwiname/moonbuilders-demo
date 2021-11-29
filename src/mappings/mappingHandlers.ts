@@ -28,6 +28,7 @@ export async function erc20Transfer(event: MoonbeamEvent<[string, string, BigNum
         from: event.args.from,
         to: event.args.to,
         amount: event.args.value.toBigInt(),
+        contractAddress: event.address,
     });
 
     await transfer.save();
