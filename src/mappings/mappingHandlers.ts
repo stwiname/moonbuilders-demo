@@ -19,7 +19,7 @@ export async function collatorJoined(event: SubstrateEvent): Promise<void> {
 export async function collatorLeft(call: SubstrateExtrinsic): Promise<void> {
 
     const address = call.extrinsic.signer.toString();
-    Collator.remove(address);
+    await Collator.remove(address);
 }
 
 export async function erc20Transfer(event: MoonbeamEvent<[string, string, BigNumber] & { from: string, to: string, value: BigNumber, }>): Promise<void> {
