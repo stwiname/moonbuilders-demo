@@ -1,4 +1,4 @@
-import {SubstrateEvent} from "@subql/types";
+import {SubstrateEvent, SubstrateExtrinsic} from "@subql/types";
 import {Erc20Transfer, Collator} from "../types";
 import { MoonbeamEvent } from '@subql/contract-processors/dist/moonbeam';
 import { BigNumber } from '@ethersproject/bignumber';
@@ -16,9 +16,9 @@ export async function collatorJoined(event: SubstrateEvent): Promise<void> {
 
 }
 
-export async function collatorLeft(event: SubstrateEvent): Promise<void> {
+export async function collatorLeft(call: SubstrateExtrinsic): Promise<void> {
 
-    const address = event.extrinsic.extrinsic.signer.toString();
+    const address = call.extrinsic.signer.toString();
     Collator.remove(address);
 }
 
